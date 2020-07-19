@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import React, { memo, useEffect } from 'react';
 import {
   FiAlertCircle, FiXCircle, FiCheckCircle, FiInfo,
@@ -8,6 +9,7 @@ import { Container } from './styles';
 
 interface ToastProps {
     toast: ToastMessage;
+    style: object;
 }
 
 const icons = {
@@ -16,7 +18,7 @@ const icons = {
   success: <FiCheckCircle size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ toast }) => {
+const Toast: React.FC<ToastProps> = ({ toast, style }) => {
   const { removeToast } = useToast();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const Toast: React.FC<ToastProps> = ({ toast }) => {
   }, [removeToast, toast.id]);
 
   return (
-    <Container type={toast.type} hasDescription={!!toast.description}>
+    <Container type={toast.type} hasDescription={!!toast.description} style={style}>
       {icons[toast.type || 'info']}
 
       <div>
