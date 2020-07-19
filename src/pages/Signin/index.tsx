@@ -29,7 +29,7 @@ const Signin: React.FC = () => {
 
   console.log(user);
 
-  const handleSubmit = useCallback(async (data: SignInFormData) => {
+  const handleSubmit = useCallback(async (data: SignInFormData): Promise<void> => {
     try {
         formRef.current?.setErrors({});
 
@@ -50,9 +50,15 @@ const Signin: React.FC = () => {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErros(err);
 
-        return formRef.current?.setErrors(errors);
+        formRef.current?.setErrors(errors);
       }
-      addToast();
+      addToast({
+        message: {
+          title: 'Erro',
+          type: 'error',
+          description: 'Ocorreu um erro ao fazer login, cheque suas credênciais!',
+        },
+      });
     }
   }, [signIn, addToast]);
 
