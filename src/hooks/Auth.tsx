@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 import React, {
   createContext, useCallback, useState, useContext,
 } from 'react';
 import api from '../services/apiClient';
 
-interface SignInCredentials {
+type SignInCredentials = {
     email: string;
     password: string;
 }
@@ -14,19 +15,19 @@ interface IAuthContext {
     signOut(): void;
 }
 
-interface IUser {
+type IUser = {
     id: string;
     name: string;
     email: string;
-    avatar: any;
+    avatar: string;
 }
 
-interface IRequestData{
-    User: IUser;
+type IRequestData = {
+    user: IUser;
     token: string;
 }
 
-interface IAuthState {
+type IAuthState = {
   token: string;
   user: IUser;
 }
@@ -46,17 +47,17 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post<IRequestData>('/sessions', {
+    const response = await api.post<IRequestData>('/users/sessions', {
       email,
       password,
     });
 
-    const { token, User } = response.data;
+    const { token, user } = response.data;
 
     localStorage.setItem('@Gobarber:token', token);
-    localStorage.setItem('@Gobarber:user', JSON.stringify(User));
+    localStorage.setItem('@Gobarber:user', JSON.stringify(user));
 
-    setData({ token, user: User });
+    setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
