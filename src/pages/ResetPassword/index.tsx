@@ -45,6 +45,7 @@ const ResetPassword: React.FC = () => {
 
       history.push('/');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formRef = useRef<FormHandles>(null);

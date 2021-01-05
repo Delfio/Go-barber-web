@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, { memo, useEffect } from 'react';
 import {
-  FiAlertCircle, FiXCircle, FiCheckCircle, FiInfo,
+  FiXCircle, FiCheckCircle, FiInfo,
 } from 'react-icons/fi';
 import { ToastMessage, useToast } from '../../../hooks/Toast';
 

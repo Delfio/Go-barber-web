@@ -52,8 +52,13 @@ export const Profile = styled.div`
             color: #f4ede8;
         }
 
-        strong {
+        a {
             color: #ff9000;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.8;
+            }
         }
     }
 `;
@@ -139,6 +144,7 @@ export const NextAppointment = styled.div`
             display: flex;
             align-items: center;
             color: #999591;
+            width: 65px;
 
             svg {
                 color: #ff9000;

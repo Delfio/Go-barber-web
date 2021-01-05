@@ -9,17 +9,17 @@ type SignInCredentials = {
     password: string;
 }
 
+export type IUser = {
+    id: string;
+    name: string;
+    email: string;
+    avatar_url: string;
+}
+
 interface IAuthContext {
     user: IUser;
     signIn(credentials: SignInCredentials): Promise<void>;
     signOut(): void;
-}
-
-type IUser = {
-    id: string;
-    name: string;
-    email: string;
-    avatar: string;
 }
 
 type IRequestData = {
