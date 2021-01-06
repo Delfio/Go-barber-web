@@ -20,6 +20,7 @@ interface IAuthContext {
     user: IUser;
     signIn(credentials: SignInCredentials): Promise<void>;
     signOut(): void;
+    updateUser(updatedData: IUser): void;
 }
 
 type IRequestData = {
@@ -71,8 +72,24 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({} as IAuthState);
   }, []);
 
+  const updateUser = useCallback(
+    (updatedData: IUser) => {
+      setData({
+        token: data.token,
+        user: {
+          ...updatedData,
+        },
+      });
+
+      localStorage.setItem('@Gobarber:user', JSON.stringify(updatedData));
+    }, [setData, data.token],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{
+      user: data.user, signIn, signOut, updateUser,
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );
